@@ -1,0 +1,61 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [implementation-updated]
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout articles
+        uses: actions/checkout@v4
+        with:
+          path: hume.com
+
+      - name: Checkout implementation
+        uses: actions/checkout@v4
+        with:
+          repository: shsw228/hume-press
+          path: hume-press
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: hume-press/package-lock.json
+
+      - name: Install dependencies
+        working-directory: hume-press
+        run: npm ci
+
+      - name: Build
+        working-directory: hume-press
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: hume-press/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
