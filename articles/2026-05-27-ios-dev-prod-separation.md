@@ -3,7 +3,7 @@ title: iOS 開発/本番環境の分離
 description: Xcode の Build Configuration を使って、開発版と本番版を同一デバイスに共存させるための設定をまとめた。
 pubDate: 2026-05-27
 tags: [iOS, Xcode]
-draft: true
+draft: false
 ---
 
 開発中のビルドと App Store に出している本番ビルドを、同じ iPhone に同時にインストールできるようにしたい。Xcode の Build Configuration（Debug/Release）を軸に、何をどこで分離するかを整理する。
