@@ -1,0 +1,25 @@
+name: Dispatch build to hume-press
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'articles/**'
+      - '.github/workflows/dispatch.yml'
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger build in shsw228/hume-press
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.DISPATCH_TOKEN }}
+          repository: shsw228/hume-press
+          event-type: articles-updated
+          client-payload: |
+            {
+              "ref": "${{ github.ref }}",
+              "sha": "${{ github.sha }}"
+            }
