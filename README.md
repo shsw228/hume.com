@@ -8,6 +8,18 @@
 - `main` への push で `deploy.yml` が走り、hume-press を checkout してビルド、GitHub Pages へ配信する。
 - 実装側（hume-press）の更新時は hume-press の `dispatch.yml` が `repository_dispatch` を本リポジトリに投げて再ビルドをキックする。
 
+## ローカルプレビュー
+
+sibling repo として `../hume-press` が存在することを前提に、Makefile から実装側の dev server を起動できる:
+
+```sh
+make preview                # localhost:4321 で起動 + ブラウザ自動オープン
+make preview NO_OPEN=1      # ブラウザを開かない
+HUME_PRESS=/path/to/hume-press make preview   # 実装側パスを上書き
+```
+
+依存が未インストールなら自動で `npm install` を実行する。停止は Ctrl+C。
+
 ## frontmatter スキーマ
 
 ```yaml
