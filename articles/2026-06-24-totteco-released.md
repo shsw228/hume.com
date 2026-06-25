@@ -3,7 +3,7 @@ title: Totteco をリリースした
 description: 透過素材をライブカメラに重ねて撮る iOS アプリ Totteco を公開した。作っていて引っかかった箇所をいくつか残しておく。
 pubDate: 2026-06-24
 tags: [iOS, SwiftUI, AVFoundation, CoreImage]
-draft: true
+draft: false
 ---
 
 iOS アプリ Totteco を公開した。
