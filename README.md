@@ -1,5 +1,9 @@
 # hume.com
 
+[![Deploy](https://github.com/shsw228/hume.com/actions/workflows/deploy.yml/badge.svg)](https://github.com/shsw228/hume.com/actions/workflows/deploy.yml)
+![Articles](https://img.shields.io/github/directory-file-count/shsw228/hume.com/articles?type=file&extension=md&label=articles)
+![Last commit](https://img.shields.io/github/last-commit/shsw228/hume.com)
+
 技術ブログ（`https://shsw228.github.io/hume.com/`）の記事原稿リポジトリ兼配信元。実装は [shsw228/hume-press](https://github.com/shsw228/hume-press) にある。
 
 ## 運用

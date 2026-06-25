@@ -3,6 +3,10 @@ name: Build and deploy
 on:
   push:
     branches: [main]
+    # 配信物に影響するのは articles/** だけ。README 等のメタ変更ではデプロイしない。
+    paths:
+      - 'articles/**'
+      - '.github/workflows/deploy.yml'
   repository_dispatch:
     types: [implementation-updated]
   workflow_dispatch:
